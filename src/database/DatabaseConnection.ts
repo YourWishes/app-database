@@ -42,10 +42,12 @@ export class DatabaseConnection extends Module {
 
   async init():Promise<void> {
     //Check the configuration.
-    if(!this.app.config.has(CONFIG_URL)) throw "Missing Database Connection URL in Configuration.";
+    if(!this.app.config.has(CONFIG_URL)) throw new Error("Missing Database Connection URL in Configuration.");
 
     //Now attempt to connect to the PostgreSQL server
+    this.logger.debug('Connecting to database...');
     this.connection = await pgp(this.app.config.get(CONFIG_URL));
+    this.logger.debug('Successfully connected to the database.');
   }
 
   //Since we want queries to run through us in the future we're going to setup

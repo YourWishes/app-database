@@ -24,6 +24,7 @@
 import { IMain, IDatabase } from 'pg-promise';
 import * as pgPromise from 'pg-promise';
 import { App, Module } from '@yourwishes/app-base';
+import { IDatabaseApp } from './../app/IDatabaseApp';
 
 export const CONFIG_URL = "database.url";
 
@@ -34,7 +35,7 @@ const pgp:IMain = pgPromise({
 export class DatabaseConnection extends Module {
   connection:IDatabase<any>;
 
-  constructor(app:App) {
+  constructor(app:IDatabaseApp) {
     super(app);
   }
 

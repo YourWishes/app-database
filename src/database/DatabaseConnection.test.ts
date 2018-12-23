@@ -1,7 +1,10 @@
 import { DatabaseConnection } from './DatabaseConnection';
 import { App } from '@yourwishes/app-base';
+import { IDatabaseApp } from './../app/IDatabaseApp';
 
-class SampleApp extends App {}
+class SampleApp extends App implements IDatabaseApp {
+  database:DatabaseConnection;
+}
 
 describe('DatabaseConnection', () => {
   it('should require an app', () => {
@@ -26,6 +29,6 @@ describe('init', () => {
     let app = new SampleApp();
     let db = new DatabaseConnection(app);
     app.addModule(db);
-    await expect(db.init()).toThrow();
+    await expect(db.init()).rejects.toThrow();
   });
 });

@@ -1,4 +1,4 @@
-// Copyright (c) 2018 Dominic Masters
+// Copyright (c) 2019 Dominic Masters
 //
 // MIT License
 //
@@ -21,6 +21,16 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-export * from './database';
-export * from './app/IDatabaseApp';
-export * from './update/DatabaseUpdateable';
+import { ModuleUpdateable, NPMPackage } from '@yourwishes/app-base';
+import { IDatabaseApp } from './../app/IDatabaseApp';
+
+export class DatabaseUpdateable extends ModuleUpdateable {
+  app:IDatabaseApp;
+
+  constructor(app:IDatabaseApp) {
+    super();
+    this.app = app;
+  }
+
+  getPackage():NPMPackage { return require('./../../package.json'); }
+}

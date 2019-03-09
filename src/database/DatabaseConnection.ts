@@ -23,20 +23,21 @@
 
 import { IMain, IDatabase } from 'pg-promise';
 import * as pgPromise from 'pg-promise';
-import { App, Module } from '@yourwishes/app-base';
+import { Module } from '@yourwishes/app-base';
 import { IDatabaseApp } from './../app/IDatabaseApp';
+import { DatabaseUpdateable } from './../update/DatabaseUpdateable';
 
 export const CONFIG_URL = "database.url";
 
-const pgp:IMain = pgPromise({
-
-});
+const pgp:IMain = pgPromise({  });
 
 export class DatabaseConnection extends Module {
   connection:IDatabase<any>;
 
   constructor(app:IDatabaseApp) {
     super(app);
+
+    app.updateChecker.addUpdateable(new DatabaseUpdateable(app));
   }
 
   isConnected():boolean { return this.connection != null; }

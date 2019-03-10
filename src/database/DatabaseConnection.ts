@@ -32,7 +32,6 @@ export const CONFIG_URL = "database.url";
 const pgp:IMain = pgPromise({  });
 
 export class DatabaseConnection extends Module {
-  app:IDatabaseApp;
   connection:IDatabase<any>;
 
   constructor(app:IDatabaseApp) {

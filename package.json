@@ -1,6 +1,6 @@
 {
   "name": "@yourwishes/app-database",
-  "version": "1.1.0",
+  "version": "1.1.5",
   "description": "Database Module with PostgeSQL support for use with my App Framework.",
   "main": "dist/index.js",
   "scripts": {
@@ -31,7 +31,7 @@
     "typescript": "^3.2.2"
   },
   "dependencies": {
-    "@yourwishes/app-base": "^1.4.1",
+    "@yourwishes/app-base": "^1.4.2",
     "pg-promise": "^8.5.3"
   }
 }

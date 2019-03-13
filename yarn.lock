@@ -24,9 +24,9 @@
   version "10.12.30"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.30.tgz#4c2b4f0015f214f8158a347350481322b3b29b2f"
 
-"@yourwishes/app-base@^1.4.2":
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/@yourwishes/app-base/-/app-base-1.4.2.tgz#0d370603d6db34b140375d33fcaf95724564343a"
+"@yourwishes/app-base@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@yourwishes/app-base/-/app-base-2.0.0.tgz#faca1fc6665aa1b0d99dfa75c839210543258bd0"
   dependencies:
     cross-fetch "^3.0.1"
     node-cache "^4.2.0"

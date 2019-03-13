@@ -23,24 +23,24 @@
 
 import { IMain, IDatabase } from 'pg-promise';
 import * as pgPromise from 'pg-promise';
-import { Module } from '@yourwishes/app-base';
+import { Module, NPMPackage } from '@yourwishes/app-base';
 import { IDatabaseApp } from './../app/IDatabaseApp';
-import { DatabaseUpdateable } from './../update/DatabaseUpdateable';
 
 export const CONFIG_URL = "database.url";
 
 const pgp:IMain = pgPromise({  });
 
 export class DatabaseConnection extends Module {
+  app:IDatabaseApp;
   connection:IDatabase<any>;
 
   constructor(app:IDatabaseApp) {
     super(app);
-
-    app.updateChecker.addUpdateable(new DatabaseUpdateable(app));
   }
 
   isConnected():boolean { return this.connection != null; }
+
+  loadPackage():NPMPackage { return require('./../../package.json'); }
 
   async init():Promise<void> {
     //Check the configuration.
@@ -50,6 +50,10 @@ export class DatabaseConnection extends Module {
     this.logger.debug('Connecting to database...');
     this.connection = await pgp(this.app.config.get(CONFIG_URL));
     this.logger.debug('Successfully connected to the database.');
+  }
+
+  async destroy():Promise<void> {
+    //TODO: Gracefully close connection.
   }
 
   //Since we want queries to run through us in the future we're going to setup

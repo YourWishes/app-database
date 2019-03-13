@@ -23,4 +23,3 @@
 
 export * from './database';
 export * from './app/IDatabaseApp';
-export * from './update/DatabaseUpdateable';

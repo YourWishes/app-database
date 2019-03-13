@@ -15,20 +15,21 @@ describe('DatabaseConnection', () => {
     let app = new SampleApp();
     expect(() => new DatabaseConnection(app)).not.toThrow();
   });
-
-  it('should be able to be added to an app', () => {
-    let app = new SampleApp();
-    let db = new DatabaseConnection(app);
-    expect(() => app.addModule(db)).not.toThrow();
-    expect(app.modules).toContain(db);
-  });
 });
 
 describe('init', () => {
   it('should require the config to have the URL', async () => {
     let app = new SampleApp();
     let db = new DatabaseConnection(app);
-    app.addModule(db);
+    app.modules.addModule(db);
     await expect(db.init()).rejects.toThrow();
+  });
+});
+
+describe('loadPackage', () => {
+  it('should be called on construct and define the package.json', () => {
+    let app = new SampleApp();
+    let db = new DatabaseConnection(app);
+    expect(db.package.name).toStrictEqual('@yourwishes/app-database');
   });
 });

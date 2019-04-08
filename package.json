@@ -1,6 +1,6 @@
 {
   "name": "@yourwishes/app-database",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Database Module with PostgeSQL support for use with my App Framework.",
   "main": "dist/index.js",
   "scripts": {
@@ -23,15 +23,12 @@
   "homepage": "https://github.com/YourWishes/app-database#readme",
   "devDependencies": {
     "@types/jest": "^23.3.10",
-    "@types/node": "^10.12.12",
     "jest": "^23.6.0",
-    "nodemon": "^1.18.8",
     "ts-jest": "^23.10.5",
-    "ts-node": "^7.0.1",
     "typescript": "^3.2.2"
   },
   "dependencies": {
-    "@yourwishes/app-base": "^2.0.0",
+    "@yourwishes/app-base": "^2.0.3",
     "pg-promise": "^8.5.3"
   }
 }

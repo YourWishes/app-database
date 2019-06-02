@@ -28,7 +28,9 @@ import { IDatabaseApp } from './../app/IDatabaseApp';
 
 export const CONFIG_URL = "database.url";
 
-const pgp:IMain = pgPromise({  });
+export const pgp:IMain = pgPromise({  });
+
+export type QUERY_PARAM = object|undefined;
 
 export class DatabaseConnection extends Module {
   app:IDatabaseApp;
@@ -60,23 +62,31 @@ export class DatabaseConnection extends Module {
   //some alias functions here, in the future we may support things like MySQL
   //mongodb etc.
   //Database Shorthand functions
-  async none(query:string, data:object|undefined=undefined):Promise<any> {
-    return await this.connection.none(query, data);
+  none(query:string, data?:QUERY_PARAM) {
+    return this.connection.none(query, data);
   }
 
-  async any(query:string, data:object|undefined=undefined):Promise<any> {
-    return await this.connection.any(query, data);
+  any<T=any>(query:string, data?:QUERY_PARAM) {
+    return this.connection.any<T>(query, data);
   }
 
-  async one(query:string, data:object|undefined=undefined):Promise<any> {
-    return await this.connection.one(query, data);
+  one<T=any>(query:string, data?:QUERY_PARAM) {
+    return this.connection.one<T>(query, data);
   }
 
-  async oneOrNone(query:string, data:object|undefined=undefined):Promise<any> {
-    return await this.connection.oneOrNone(query, data);
+  oneOrNone<T=any>(query:string, data?:QUERY_PARAM) {
+    return this.connection.oneOrNone<T>(query, data);
   }
 
-  async query(query:string, data:object|undefined=undefined):Promise<any> {
-    return await this.connection.query(query, data);
+  many<T=any>(query:string, data?:QUERY_PARAM) {
+    return this.connection.many<T>(query, data);
+  }
+
+  manyOrNone<T=any>(query:string, data?:QUERY_PARAM) {
+    return this.connection.manyOrNone<T>(query, data);
+  }
+
+  query<T=any>(query:string, data?:QUERY_PARAM) {
+    return this.connection.query<T>(query, data);
   }
 }

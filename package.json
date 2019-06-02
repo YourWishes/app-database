@@ -1,6 +1,6 @@
 {
   "name": "@yourwishes/app-database",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Database Module with PostgeSQL support for use with my App Framework.",
   "main": "dist/index.js",
   "scripts": {

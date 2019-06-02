@@ -28,13 +28,12 @@ import { IDatabaseApp } from './../app/IDatabaseApp';
 
 export const CONFIG_URL = "database.url";
 
-export const pgp:IMain = pgPromise({  });
-
 export type QUERY_PARAM = object|undefined;
 
 export class DatabaseConnection extends Module {
   app:IDatabaseApp;
   connection:IDatabase<any>;
+  pgp:IMain;
 
   constructor(app:IDatabaseApp) {
     super(app);
@@ -50,12 +49,24 @@ export class DatabaseConnection extends Module {
 
     //Now attempt to connect to the PostgreSQL server
     this.logger.debug('Connecting to database...');
-    this.connection = await pgp(this.app.config.get(CONFIG_URL));
+    if(!this.pgp) this.pgp = pgPromise({  });
+    this.connection = await this.pgp(this.app.config.get(CONFIG_URL));
     this.logger.debug('Successfully connected to the database.');
   }
 
+  async verify():Promise<boolean> {
+    try {
+      await this.one('SELECT 1;');
+      return true;
+    } catch(e) {
+      this.logger.severe(e);
+      return false;
+    }
+  }
+
   async destroy():Promise<void> {
-    //TODO: Gracefully close connection.
+    this.connection = null;
+    this.pgp.end();
   }
 
   //Since we want queries to run through us in the future we're going to setup

@@ -1,6 +1,5 @@
-import { DatabaseConnection } from './DatabaseConnection';
 import { App } from '@yourwishes/app-base';
-import { IDatabaseApp } from './../app/IDatabaseApp';
+import { IDatabaseApp, DatabaseConnection } from './../';
 
 class SampleApp extends App implements IDatabaseApp {
   database:DatabaseConnection;

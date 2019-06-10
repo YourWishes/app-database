@@ -22,7 +22,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import { IApp } from '@yourwishes/app-base';
-import { DatabaseConnection } from './../database/';
+import { DatabaseConnection } from '~database';
 
 export interface IDatabaseApp extends IApp {
   database:DatabaseConnection;

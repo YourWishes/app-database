@@ -21,10 +21,10 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+import { Module, NPMPackage } from '@yourwishes/app-base';
 import { IMain, IDatabase } from 'pg-promise';
 import * as pgPromise from 'pg-promise';
-import { Module, NPMPackage } from '@yourwishes/app-base';
-import { IDatabaseApp } from './../app/IDatabaseApp';
+import { IDatabaseApp } from '~app/IDatabaseApp';
 
 export const CONFIG_URL = "database.url";
 

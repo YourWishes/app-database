@@ -50,7 +50,13 @@ export class DatabaseConnection extends Module {
     //Now attempt to connect to the PostgreSQL server
     this.logger.debug('Connecting to database...');
     if(!this.pgp) this.pgp = pgPromise({  });
-    this.connection = await this.pgp(this.app.config.get(CONFIG_URL));
+    try {
+      this.connection = await this.pgp(this.app.config.get(CONFIG_URL));
+      await this.verify();
+    } catch(e) {
+      this.logger.severe(`Failed to connect to PostgreSQL Database!`);
+      throw e;
+    }
     this.logger.debug('Successfully connected to the database.');
   }
 
